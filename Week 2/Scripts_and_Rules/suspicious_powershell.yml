@@ -1,0 +1,14 @@
+title: Suspicious PowerShell Activity
+id: 12345-abcde
+description: Detects PowerShell command execution via process creation logs.
+logsource:
+    category: process_creation
+    product: windows
+detection:
+    selection:
+        Image|endswith: '\powershell.exe'
+        CommandLine|contains: '-Command'
+    condition: selection
+falsepositives:
+    - Administrative maintenance scripts
+level: medium
